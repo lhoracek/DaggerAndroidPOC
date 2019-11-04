@@ -14,6 +14,7 @@ abstract class BaseActivity<T: ViewDataBinding, V: Any>(val layoutId: Int): Dagg
     protected lateinit var binding: T
     protected lateinit var viewModel: V
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
