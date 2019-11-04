@@ -6,23 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import com.generalbytes.myapplication.BR
-import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : Any>(val layoutId: Int) : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding, V : Any>(val layoutId: Int) : DaggerFragment() {
 
     protected val disposables = CompositeDisposable()
     protected lateinit var binding: T
     protected lateinit var viewModel: V
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidSupportInjection.inject(this)
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,22 +1,20 @@
 package com.generalbytes.myapplication.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.generalbytes.myapplication.BR
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 
 
-abstract class BaseActivity<T: ViewDataBinding, V: Any>(val layoutId: Int): AppCompatActivity() {
+abstract class BaseActivity<T: ViewDataBinding, V: Any>(val layoutId: Int): DaggerAppCompatActivity() {
 
     protected val disposables = CompositeDisposable()
     protected lateinit var binding: T
     protected lateinit var viewModel: V
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         viewModel = createViewModel()

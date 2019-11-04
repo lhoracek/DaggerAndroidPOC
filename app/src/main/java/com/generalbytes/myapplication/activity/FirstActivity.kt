@@ -8,6 +8,7 @@ import javax.inject.Inject
 class FirstActivity: BaseActivity<ActivityBinding, ActivityViewModel>(R.layout.activity) {
 
     @Inject lateinit var vm: ActivityViewModel
+    // @Inject lateinit var fragmentManager: FragmentManager
 
     override fun createViewModel() = vm
 }

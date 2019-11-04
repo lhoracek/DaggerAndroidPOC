@@ -2,9 +2,7 @@ package com.generalbytes.myapplication.di
 
 import android.graphics.Color
 import com.generalbytes.myapplication.model.First
-import com.generalbytes.myapplication.model.Fourth
 import com.generalbytes.myapplication.model.Second
-import com.generalbytes.myapplication.model.Third
 import dagger.Module
 import dagger.Provides
 import dagger.android.AndroidInjectionModule
@@ -21,15 +19,8 @@ class ApplicationModule {
     @Singleton
     fun provideSecondNum() = Second(numberFactory())
 
-    @Provides
-    fun provideThirdNum() = Third(numberFactory())
-
-    @Provides
-    fun provideFourthNum() = Fourth(numberFactory())
-
     companion object {
         var rnd = Random()
         fun numberFactory() = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
     }
-
 }
