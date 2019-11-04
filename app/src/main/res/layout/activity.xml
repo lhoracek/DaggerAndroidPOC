@@ -20,7 +20,7 @@
             android:id="@+id/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{`Activity\n` + viewModel.firstNumber + `\n` + viewModel.secondNumber}"
+            android:text="@{`Activity\n` + viewModel.firstNumber.value + `\n` + viewModel.secondNumber.value + `\n` + viewModel.thirdNumber.value}"
             app:layout_constraintBottom_toTopOf="@+id/fragments"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

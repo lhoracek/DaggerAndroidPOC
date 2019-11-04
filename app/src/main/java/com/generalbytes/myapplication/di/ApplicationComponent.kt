@@ -4,41 +4,12 @@ import android.app.Application
 import com.generalbytes.myapplication.DiApp
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import javax.inject.Qualifier
-import javax.inject.Scope
+import dagger.android.AndroidInjector
+import javax.inject.Singleton
 
-
-@Scope
-@Retention
-annotation class ApplicationScope
-
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class First
-
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class Second
-
-@ApplicationScope
-@Component(
-    modules = [
-        AndroidInjectionModule::class,
-        ApplicationModule::class,
-        ActivitiesModule::class,
-        FragmentsModule::class]
-)
-interface AppComponent {
-
-
-    @First
-    fun getNumber(): Integer
-
-    @Second
-    fun getSecondNumber(): Integer
+@Singleton
+@Component(modules = [ApplicationModule::class, ActivitiesModule::class, FragmentsModule::class])
+interface AppComponent: AndroidInjector<DiApp> {
 
     @Component.Builder
     interface Builder {
@@ -47,6 +18,4 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
-
-    fun inject(myApp: DiApp)
 }
