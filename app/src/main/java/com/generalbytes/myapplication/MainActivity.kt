@@ -1,18 +1,15 @@
 package com.generalbytes.myapplication
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.generalbytes.myapplication.di.AppComponent
-import dagger.android.AndroidInjection
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     @Inject lateinit var component: AppComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
