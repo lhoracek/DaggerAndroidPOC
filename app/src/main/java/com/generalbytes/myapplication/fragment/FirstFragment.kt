@@ -17,10 +17,8 @@ class FirstFragment: BaseFragment<FragmentBinding, FragmentViewModel>(R.layout.f
     @Inject lateinit var fm: FragmentManager
     override fun createViewModel() = vm
 
-    @Module
+    @Module(includes = [BaseFragment.InjectionModule::class])
     abstract class InjectionModule {
-        @Binds
-        @FragmentScope
-        internal abstract fun bindFragment(fragment: FirstFragment): Fragment
+        @Binds @FragmentScope internal abstract fun bindFragment(fragment: FirstFragment): Fragment
     }
 }

@@ -15,11 +15,11 @@ annotation class ActivityScope
 
 @Module
 abstract class ActivityBindingModule {
-    @ContributesAndroidInjector(modules = [ActivityScopeModule::class])
+    @ContributesAndroidInjector(modules = [FirstActivity.InjectionModule::class])
     @ActivityScope
     abstract fun firstActivity(): FirstActivity
 
-    @ContributesAndroidInjector(modules = [ActivityScopeModule::class])
+    @ContributesAndroidInjector(modules = [SecondActivity.InjectionModule::class])
     @ActivityScope
     abstract fun secondActivity(): SecondActivity
 }
@@ -30,10 +30,6 @@ class ActivityScopeModule {
     @Provides
     @ActivityScope
     fun provideThirdNum() = Third(ApplicationModule.numberFactory())
-
-    @Provides
-    @ActivityScope
-    fun provideActivity(activity: AppCompatActivity) = activity
 
     @Provides
     @ActivityScope

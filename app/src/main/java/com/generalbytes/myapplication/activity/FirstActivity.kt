@@ -11,14 +11,12 @@ import javax.inject.Inject
 
 class FirstActivity: BaseActivity<ActivityBinding, ActivityViewModel>(R.layout.activity) {
 
-    @Module
-    abstract class InjectionModule {
-        @Binds
-        @ActivityScope
-        internal abstract fun bindAppCompatActivity(activity: FirstActivity): AppCompatActivity
-    }
-
     @Inject lateinit var vm: ActivityViewModel
 
     override fun createViewModel() = vm
+
+    @Module(includes = [BaseActivity.InjectionModule::class])
+    abstract class InjectionModule {
+        @Binds @ActivityScope internal abstract fun bindAppCompatActivity(activity: FirstActivity): AppCompatActivity
+    }
 }

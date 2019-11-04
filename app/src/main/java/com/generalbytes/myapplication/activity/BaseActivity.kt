@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.generalbytes.myapplication.BR
+import com.generalbytes.myapplication.di.ActivityScopeModule
+import dagger.Module
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 
@@ -14,6 +16,9 @@ abstract class BaseActivity<T: ViewDataBinding, V: Any>(val layoutId: Int): Dagg
     protected lateinit var binding: T
     protected lateinit var viewModel: V
 
+    @Module(includes = [ActivityScopeModule::class])
+    abstract class InjectionModule {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
