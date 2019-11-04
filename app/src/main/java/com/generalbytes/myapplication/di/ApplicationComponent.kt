@@ -27,14 +27,18 @@ annotation class Second
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        AppModule::class,
-        ActivitiesModule::class]
+        ApplicationModule::class,
+        ActivitiesModule::class,
+        FragmentsModule::class]
 )
 interface AppComponent {
 
 
-    @First fun getNumber(): Integer
-    @Second fun getSecondNumber(): Integer
+    @First
+    fun getNumber(): Integer
+
+    @Second
+    fun getSecondNumber(): Integer
 
     @Component.Builder
     interface Builder {
@@ -44,5 +48,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(githubApp: DiApp)
+    fun inject(myApp: DiApp)
 }
