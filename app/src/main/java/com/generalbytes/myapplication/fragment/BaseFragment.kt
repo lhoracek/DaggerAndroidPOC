@@ -6,18 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import com.generalbytes.myapplication.BR
 import com.generalbytes.myapplication.di.FragmentScopeModule
+import com.generalbytes.myapplication.vm.createFactory
 import dagger.Module
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : Any>(val layoutId: Int) : DaggerFragment() {
+abstract class BaseFragment<T : ViewDataBinding, V : ViewModel>(val layoutId: Int) : DaggerFragment() {
 
     protected val disposables = CompositeDisposable()
     protected lateinit var binding: T
-    protected lateinit var viewModel: V
+    @Inject protected lateinit var viewModel: V
 
     @Module(includes = [FragmentScopeModule::class])
     abstract class InjectionModule {
@@ -29,7 +33,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : Any>(val layoutId: Int) : D
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater, layoutId, null, false)
-        viewModel = createViewModel()
+        val viewModelFactory = viewModel.createFactory()
+        ViewModelProviders.of(this, viewModelFactory).get(viewModel.javaClass)
         bindModel()
         return binding.root
     }
@@ -37,8 +42,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : Any>(val layoutId: Int) : D
     protected fun bindModel() {
         binding.setVariable(BR.viewModel, viewModel)
     }
-
-    abstract fun createViewModel(): V
 
     override fun onPause() {
         super.onPause()

@@ -1,5 +1,6 @@
 package com.generalbytes.myapplication.service
 
+import android.app.Application
 import android.content.Intent
 import android.os.IBinder
 import com.generalbytes.myapplication.vm.ServiceViewModel
@@ -11,7 +12,10 @@ import javax.inject.Inject
 
 
 class StickyService : DaggerService() {
-    @Inject lateinit var serviceViewModel: ServiceViewModel
+    @Inject
+    lateinit var serviceViewModel: ServiceViewModel
+    @Inject
+    lateinit var app: Application
 
     override fun onBind(p0: Intent?): IBinder? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -19,12 +23,10 @@ class StickyService : DaggerService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Timber.d("Starting service")
-        Observable.timer(2, TimeUnit.SECONDS).subscribe ({ it ->
-            {
-                Timber.d("Sending value $it")
-                serviceViewModel.subject.onNext(it.toString())
-            }
-        })
+        Observable.interval(1, TimeUnit.SECONDS).subscribe {
+            Timber.d("Sending value $it app: ${app.toString()}")
+            serviceViewModel.subject.onNext(it.toString())
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 }

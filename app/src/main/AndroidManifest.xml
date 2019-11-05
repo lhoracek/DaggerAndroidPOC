@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <service android:name=".service.StickyService" />
+        <service android:name=".service.DifferentProcessService" android:process=":MyCustomProcess" />
     </application>
 
 </manifest>

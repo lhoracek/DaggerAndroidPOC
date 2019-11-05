@@ -12,14 +12,14 @@ class ActivityViewModel @Inject constructor(
     val secondNumber: Second,
     val thirdNumber: Third,
     val serviceViewModel: ServiceViewModel
-) {
+) : BaseViewModel() {
     val text = ObservableField<String>("")
     val textProcess = ObservableField<String>("")
 
     init {
-        serviceViewModel.subject.subscribe { it -> {
+        disposable.add(serviceViewModel.subject.subscribe {
             Timber.d("Sticky" + it)
             text.set(it)
-        }}
+        })
     }
 }

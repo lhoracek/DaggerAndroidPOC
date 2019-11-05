@@ -13,9 +13,7 @@ import javax.inject.Inject
 
 class FirstFragment: BaseFragment<FragmentBinding, FragmentViewModel>(R.layout.fragment) {
 
-    @Inject lateinit var vm: FragmentViewModel
     @Inject lateinit var fm: FragmentManager
-    override fun createViewModel() = vm
 
     @Module(includes = [BaseFragment.InjectionModule::class])
     abstract class InjectionModule {

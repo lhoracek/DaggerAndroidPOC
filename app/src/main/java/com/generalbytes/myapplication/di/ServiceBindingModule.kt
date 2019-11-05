@@ -1,5 +1,6 @@
 package com.generalbytes.myapplication.di
 
+import com.generalbytes.myapplication.service.DifferentProcessService
 import com.generalbytes.myapplication.service.StickyService
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -12,5 +13,5 @@ annotation class ServiceScope
 @Module
 abstract class ServiceBindingModule {
     @ContributesAndroidInjector @ServiceScope abstract fun stickyService(): StickyService
-    // @ContributesAndroidInjector @ServiceScope abstract fun differentProcessService(): DifferentProcessService
+    @ContributesAndroidInjector @ServiceScope abstract fun differentProcessService(): DifferentProcessService
 }
