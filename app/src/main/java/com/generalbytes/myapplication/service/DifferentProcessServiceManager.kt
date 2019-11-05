@@ -13,7 +13,7 @@ class DifferentProcessServiceManager @Inject constructor(
     val app: Application,
     val viewModel: ProcessServiceViewModel
 ) {
-    val receiver = object : ResultReceiver(Handler()) {
+    private val receiver = object : ResultReceiver(Handler()) {
         override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
             super.onReceiveResult(resultCode, resultData)
             viewModel.subject.onNext(resultData?.getInt(DifferentProcessService.EXTRA_DATA).toString())
