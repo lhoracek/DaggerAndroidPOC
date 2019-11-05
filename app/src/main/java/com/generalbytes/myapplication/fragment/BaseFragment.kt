@@ -39,9 +39,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel>(val layoutId: In
         return binding.root
     }
 
-    protected fun bindModel() {
-        binding.setVariable(BR.viewModel, viewModel)
-    }
+    protected fun bindModel() = binding.setVariable(BR.viewModel, viewModel)
 
     override fun onPause() {
         super.onPause()

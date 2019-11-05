@@ -28,14 +28,13 @@ abstract class BaseActivity<T: ViewDataBinding, V: ViewModel>(val layoutId: Int)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
 
+        // This eventually creates new instance of view model after activity recreation
         ViewModelProviders.of(this, viewModel.createFactory()).get(viewModel.javaClass)
 
         bindModel()
     }
 
-    protected fun bindModel() {
-        binding.setVariable(BR.viewModel, viewModel)
-    }
+    protected fun bindModel() = binding.setVariable(BR.viewModel, viewModel)
 
     override fun onPause() {
         super.onPause()

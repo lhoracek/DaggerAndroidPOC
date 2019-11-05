@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.generalbytes.myapplication.R
 import com.generalbytes.myapplication.databinding.ActivityBinding
 import com.generalbytes.myapplication.di.ActivityScope
-import com.generalbytes.myapplication.service.DifferentProcessService
+import com.generalbytes.myapplication.service.DifferentProcessServiceManager
 import com.generalbytes.myapplication.service.StickyService
 import com.generalbytes.myapplication.vm.ActivityViewModel
 import dagger.Binds
 import dagger.Module
+import javax.inject.Inject
 
 class FirstActivity: BaseActivity<ActivityBinding, ActivityViewModel>(R.layout.activity) {
+    @Inject lateinit var differentProcessServiceManager: DifferentProcessServiceManager
+
     @Module(includes = [BaseActivity.InjectionModule::class])
     abstract class InjectionModule {
         @Binds @ActivityScope internal abstract fun bindAppCompatActivity(activity: FirstActivity): AppCompatActivity
@@ -21,6 +24,7 @@ class FirstActivity: BaseActivity<ActivityBinding, ActivityViewModel>(R.layout.a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startService(Intent(this, StickyService::class.java))
-        startService(Intent(this, DifferentProcessService::class.java))
+        differentProcessServiceManager.start()
+        // startService(Intent(this, DifferentProcessService::class.java))
     }
 }
