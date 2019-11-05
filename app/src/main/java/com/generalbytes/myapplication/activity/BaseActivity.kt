@@ -28,8 +28,7 @@ abstract class BaseActivity<T: ViewDataBinding, V: ViewModel>(val layoutId: Int)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
 
-        val viewModelFactory = viewModel.createFactory()
-        ViewModelProviders.of(this, viewModelFactory).get(viewModel.javaClass)
+        ViewModelProviders.of(this, viewModel.createFactory()).get(viewModel.javaClass)
 
         bindModel()
     }
