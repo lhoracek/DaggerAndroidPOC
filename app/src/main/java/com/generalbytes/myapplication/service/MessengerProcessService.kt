@@ -61,6 +61,11 @@ class MessengerProcessService : BaseService() {
             super.start()
             app.bindService(createIntent(), serviceConnection, Context.BIND_AUTO_CREATE)
         }
+
+        override fun stop(){
+            app.unbindService(serviceConnection)
+            super.stop()
+        }
     }
 
     val clients = mutableListOf<Messenger>()

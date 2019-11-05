@@ -18,7 +18,7 @@ abstract class BaseServiceManager<T>(val serviceClass: Class<out Service>){
         app.startService(createIntent())
     }
 
-    fun stop(){
+    open fun stop(){
         app.stopService(createIntent())
     }
 }
