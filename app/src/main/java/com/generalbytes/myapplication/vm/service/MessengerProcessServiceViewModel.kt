@@ -1,11 +1,10 @@
-package com.generalbytes.myapplication.vm
+package com.generalbytes.myapplication.vm.service
 
-import androidx.lifecycle.ViewModel
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProcessServiceViewModel @Inject constructor() : ViewModel() {
+class MessengerProcessServiceViewModel @Inject constructor() : BaseServiceViewModel() {
     val subject = PublishSubject.create<String>()
 }

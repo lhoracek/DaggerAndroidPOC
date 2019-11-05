@@ -4,16 +4,16 @@ import androidx.fragment.app.Fragment
 import com.generalbytes.myapplication.R
 import com.generalbytes.myapplication.databinding.FragmentSecondBinding
 import com.generalbytes.myapplication.di.FragmentScope
-import com.generalbytes.myapplication.vm.fragment.SecondFragmentViewModel
+import com.generalbytes.myapplication.vm.fragment.ThirdFragmentViewModel
 import dagger.Binds
 import dagger.Module
 
 
-class SecondFragment : BaseFragment<FragmentSecondBinding, SecondFragmentViewModel>(R.layout.fragment_second) {
+class ThirdFragment : BaseFragment<FragmentSecondBinding, ThirdFragmentViewModel>(R.layout.fragment_third) {
     @Module(includes = [BaseFragment.InjectionModule::class])
     abstract class InjectionModule {
         @Binds
         @FragmentScope
-        internal abstract fun bindFragment(fragment: SecondFragment): Fragment
+        internal abstract fun bindFragment(fragment: ThirdFragment): Fragment
     }
 }

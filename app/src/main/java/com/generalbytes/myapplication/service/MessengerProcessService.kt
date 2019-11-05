@@ -6,16 +6,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
-import com.generalbytes.myapplication.vm.MessengerProcessServiceViewModel
+import com.generalbytes.myapplication.vm.service.MessengerProcessServiceViewModel
 import io.reactivex.Observable
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class MessengerProcessService : BaseService() {
+class MessengerProcessService : BaseService<MessengerProcessServiceViewModel>() {
     @Inject lateinit var app: Application
-    val messenger =  Messenger(IncomingHandler())
+    val serviceMessenger =  Messenger(IncomingHandler())
 
     companion object{
         const val MSG_DATA = 1
@@ -24,7 +24,7 @@ class MessengerProcessService : BaseService() {
 
     @Singleton
     class MessengerProcessServiceManager @Inject constructor(): BaseServiceManager<MessengerProcessServiceViewModel>(MessengerProcessService::class.java) {
-        val messenger =  Messenger(IncomingHandler())
+        val managerMessenger =  Messenger(IncomingHandler())
         internal inner class IncomingHandler : Handler() {
             override fun handleMessage(msg: Message) {
                 when (msg.what) {
@@ -40,13 +40,13 @@ class MessengerProcessService : BaseService() {
                 className: ComponentName,
                 service: IBinder
             ) {
-                val service = Messenger(service)
+                val remoteService = Messenger(service)
                 Timber.d("Service just connected")
 
                 try {
                     var msg = Message.obtain(null, MSG_DATA)
-                    msg.replyTo = messenger
-                    service.send(msg)
+                    msg.replyTo = managerMessenger
+                    remoteService.send(msg)
                 } catch (e: RemoteException) {
                    // TODO
                 }
@@ -87,5 +87,5 @@ class MessengerProcessService : BaseService() {
         }
     }
 
-    override fun onBind(p0: Intent?): IBinder? = messenger.binder
+    override fun onBind(p0: Intent?): IBinder? = serviceMessenger.binder
 }

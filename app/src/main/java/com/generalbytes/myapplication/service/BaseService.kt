@@ -2,11 +2,14 @@ package com.generalbytes.myapplication.service
 
 import android.content.Intent
 import android.os.IBinder
+import com.generalbytes.myapplication.vm.service.BaseServiceViewModel
 import dagger.android.DaggerService
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 
-abstract class BaseService: DaggerService() {
+abstract class BaseService<T : BaseServiceViewModel> : DaggerService() {
+    @Inject lateinit var vm: T
     protected val disposable = CompositeDisposable()
 
     override fun onBind(p0: Intent?): IBinder? {
@@ -16,6 +19,12 @@ abstract class BaseService: DaggerService() {
 
     override fun onDestroy() {
         super.onDestroy()
+        vm.running.set(false)
         disposable.dispose()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        vm.running.set(true)
+        return super.onStartCommand(intent, flags, startId)
     }
 }

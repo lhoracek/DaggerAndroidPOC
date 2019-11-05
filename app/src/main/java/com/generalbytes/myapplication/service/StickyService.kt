@@ -2,20 +2,25 @@ package com.generalbytes.myapplication.service
 
 import android.app.Application
 import android.content.Intent
-import com.generalbytes.myapplication.vm.ServiceViewModel
+import com.generalbytes.myapplication.vm.service.StickyServiceViewModel
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
-class StickyService : BaseService() {
-    @Inject lateinit var serviceViewModel: ServiceViewModel
+class StickyService : BaseService<StickyServiceViewModel>() {
     @Inject lateinit var app: Application
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         disposable.add(Observable.interval(1, TimeUnit.SECONDS).subscribe {
-            serviceViewModel.subject.onNext(it.toString())
+            vm.subject.onNext("Sticky service: $it")
         })
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    @Singleton
+    class StickyServiceManager @Inject constructor() :
+        BaseServiceManager<StickyServiceViewModel>(StickyService::class.java) {
     }
 }

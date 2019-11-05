@@ -1,23 +1,20 @@
 package com.generalbytes.myapplication.service
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.os.ResultReceiver
-import com.generalbytes.myapplication.vm.ProcessServiceViewModel
+import com.generalbytes.myapplication.vm.service.ResultReceiverServiceViewModel
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
 
-class DifferentProcessService : BaseService() {
-    @Inject lateinit var app: Application
-
+class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>() {
     @Singleton
-    class DifferentProcessServiceManager @Inject constructor(): BaseReceiverServiceManager<ProcessServiceViewModel>(DifferentProcessService::class.java)  {
+    class DifferentProcessServiceManager @Inject constructor(): BaseReceiverServiceManager<ResultReceiverServiceViewModel>(ResultReceiverProcessService::class.java)  {
         override fun handleResult(resultCode: Int, resultData: Bundle?) {
-            viewModel.subject.onNext(resultData?.getString(EXTRA_DATA) ?: "")
+            viewModel.subject.onNext(resultData?.getInt(EXTRA_DATA).toString() ?: "")
         }
 
     }

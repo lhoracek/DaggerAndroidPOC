@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.generalbytes.myapplication.vm.FragmentViewModel" />
+            type="com.generalbytes.myapplication.vm.fragment.FirstFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,18 +13,28 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@{viewModel.fourthNumber.value}">
+        android:background="@{viewModel.serviceViewModel.running ? @color/green : @color/red }">
 
         <TextView
-            android:id="@+id/hello_world"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{`Fragment\n` + viewModel.firstNumber.value + `\n` + viewModel.secondNumber.value + `\n` + viewModel.thirdNumber.value + `\n` + viewModel.fourthNumber.value + `\n` + viewModel.fifthNumber.value + `\n` + viewModel.sixthNumber.value}"
+            android:text="Fragment 1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.serviceViewModel.observableField}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

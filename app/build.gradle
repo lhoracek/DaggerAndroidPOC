@@ -18,6 +18,11 @@ android {
         enabled = true
     }
     buildTypes {
+        emulaotr{
+            initWith buildTypes.release
+            applicationIdSuffix ".emulator"
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
