@@ -6,6 +6,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProcessServiceViewModel @Inject constructor() : ViewModel() {
+class MessengerProcessServiceViewModel @Inject constructor() : ViewModel() {
     val subject = PublishSubject.create<String>()
 }
