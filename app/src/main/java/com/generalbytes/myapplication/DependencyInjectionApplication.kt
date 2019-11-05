@@ -8,7 +8,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class DiApp : Application(), HasAndroidInjector {
+class DependencyInjectionApplication : Application(), HasAndroidInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 

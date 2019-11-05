@@ -11,9 +11,6 @@ annotation class ServiceScope
 
 @Module
 abstract class ServiceBindingModule {
-    @ContributesAndroidInjector
-    @ServiceScope
-    abstract fun stickyService(): StickyService
-
-
+    @ContributesAndroidInjector @ServiceScope abstract fun stickyService(): StickyService
+    // @ContributesAndroidInjector @ServiceScope abstract fun differentProcessService(): DifferentProcessService
 }

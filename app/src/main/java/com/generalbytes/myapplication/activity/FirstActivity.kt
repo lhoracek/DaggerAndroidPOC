@@ -26,5 +26,6 @@ class FirstActivity: BaseActivity<ActivityBinding, ActivityViewModel>(R.layout.a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startService(Intent(this, StickyService::class.java))
+       // startService(Intent(this, DifferentProcessService::class.java))
     }
 }
