@@ -18,12 +18,13 @@ class StickyService : DaggerService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Observable.interval(2, TimeUnit.SECONDS).subscribe { it ->
+        Timber.d("Starting service")
+        Observable.timer(2, TimeUnit.SECONDS).subscribe ({ it ->
             {
                 Timber.d("Sending value $it")
                 serviceViewModel.subject.onNext(it.toString())
             }
-        }
+        })
         return super.onStartCommand(intent, flags, startId)
     }
 }

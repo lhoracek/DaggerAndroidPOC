@@ -11,8 +11,7 @@ class ActivityViewModel @Inject constructor(
     val firstNumber: First,
     val secondNumber: Second,
     val thirdNumber: Third,
-    val serviceViewModel: ServiceViewModel,
-    val processServiceViewModel: ProcessServiceViewModel
+    val serviceViewModel: ServiceViewModel
 ) {
     val text = ObservableField<String>("")
     val textProcess = ObservableField<String>("")
@@ -21,10 +20,6 @@ class ActivityViewModel @Inject constructor(
         serviceViewModel.subject.subscribe { it -> {
             Timber.d("Sticky" + it)
             text.set(it)
-        }}
-        processServiceViewModel.subject.subscribe{it -> {
-            Timber.d("Process" + it)
-            textProcess.set(it)
         }}
     }
 }
