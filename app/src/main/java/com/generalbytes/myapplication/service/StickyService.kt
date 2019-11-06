@@ -20,7 +20,8 @@ class StickyService : BaseService<StickyServiceViewModel>() {
     }
 
     @Singleton
-    class StickyServiceManager @Inject constructor() :
-        BaseServiceManager<StickyServiceViewModel>(StickyService::class.java) {
-    }
+    class StickyServiceManager @Inject constructor(
+        app: Application,
+        viewModel: StickyServiceViewModel
+    ) : BaseServiceManager<StickyServiceViewModel>(app,viewModel, StickyService::class.java) {}
 }

@@ -23,8 +23,10 @@ class MessengerProcessService : BaseService<MessengerProcessServiceViewModel>() 
     }
 
     @Singleton
-    class MessengerProcessServiceManager @Inject constructor() :
-        BaseServiceManager<MessengerProcessServiceViewModel>(MessengerProcessService::class.java) {
+    class MessengerProcessServiceManager @Inject constructor(
+        app: Application,
+        viewModel: MessengerProcessServiceViewModel
+    ) : BaseServiceManager<MessengerProcessServiceViewModel>(app, viewModel, MessengerProcessService::class.java) {
         val managerMessenger = Messenger(IncomingHandler())
 
         internal inner class IncomingHandler : Handler() {
@@ -41,7 +43,6 @@ class MessengerProcessService : BaseService<MessengerProcessServiceViewModel>() 
                 }
             }
         }
-
 
         private val serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(
@@ -96,7 +97,12 @@ class MessengerProcessService : BaseService<MessengerProcessServiceViewModel>() 
         override fun handleMessage(msg: Message) {
             Timber.d("Service just got message")
             clients.add(msg.replyTo)
-            msg.replyTo.send(Message.obtain(null, BaseServiceManager.START)) // this should probably check some internal flag
+            msg.replyTo.send(
+                Message.obtain(
+                    null,
+                    BaseServiceManager.START
+                )
+            ) // this should probably check some internal flag
         }
     }
 

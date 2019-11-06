@@ -1,5 +1,6 @@
 package com.generalbytes.myapplication.service
 
+import android.app.Application
 import android.app.Service
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +9,11 @@ import android.os.ResultReceiver
 import com.generalbytes.myapplication.vm.service.BaseServiceViewModel
 
 
-abstract class BaseReceiverServiceManager<T : BaseServiceViewModel>(val serviceClazz: Class<out Service>) :
-    BaseServiceManager<T>(serviceClazz) {
+abstract class BaseReceiverServiceManager<T : BaseServiceViewModel> (
+    app: Application,
+    viewModel: T,
+    serClass: Class<out Service>
+) : BaseServiceManager<T>(app, viewModel, serClass) {
 
     companion object {
         const val EXTRA_RECEIVER = "BaseReceiverServiceManager.RECEIVER"

@@ -22,6 +22,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.33" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.165"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline01"
@@ -37,64 +43,83 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.66" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Activity\nViewModel\n` + viewModel.toString().substring(viewModel.toString().indexOf('@'))}"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/guideline2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`All running : ` + (viewModel.allRunning ? `YES` : `NO`)}"
+            app:layout_constraintBottom_toBottomOf="@id/guideline1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline2" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{(view) -> viewModel.stickyHandler.invoke()}"
             android:text="Service 01"
-            app:layout_constraintBottom_toBottomOf="@id/guideline1"
+            app:layout_constraintBottom_toBottomOf="@id/guideline2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/guideline01"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guideline2" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{(view) -> viewModel.processHandler.invoke()}"
             android:text="Service 02"
-            app:layout_constraintBottom_toBottomOf="@id/guideline1"
+            app:layout_constraintBottom_toBottomOf="@id/guideline2"
             app:layout_constraintLeft_toRightOf="@id/guideline01"
             app:layout_constraintRight_toLeftOf="@id/guideline02"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guideline2" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{(view) -> viewModel.messengerHandler.invoke()}"
             android:text="Service 03"
-            app:layout_constraintBottom_toBottomOf="@id/guideline1"
+            app:layout_constraintBottom_toBottomOf="@id/guideline2"
             app:layout_constraintLeft_toRightOf="@id/guideline02"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guideline2" />
 
         <fragment
-            android:layout_margin="5dp"
             android:id="@+id/fragment1"
             android:name="com.generalbytes.myapplication.fragment.FirstFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/guideline01"
             app:layout_constraintTop_toTopOf="@id/guideline1" />
 
         <fragment
-            android:layout_margin="5dp"
             android:id="@+id/fragment2"
             android:name="com.generalbytes.myapplication.fragment.SecondFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/guideline01"
             app:layout_constraintRight_toLeftOf="@id/guideline02"
             app:layout_constraintTop_toTopOf="@id/guideline1" />
 
         <fragment
-            android:layout_margin="5dp"
             android:id="@+id/fragment3"
             android:name="com.generalbytes.myapplication.fragment.ThirdFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/guideline02"
             app:layout_constraintRight_toRightOf="parent"

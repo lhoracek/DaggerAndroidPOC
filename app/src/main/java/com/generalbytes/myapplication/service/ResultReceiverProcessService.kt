@@ -1,5 +1,6 @@
 package com.generalbytes.myapplication.service
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.os.ResultReceiver
@@ -16,10 +17,12 @@ import javax.inject.Singleton
  */
 class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>() {
     @Singleton
-    class DifferentProcessServiceManager @Inject constructor() :
-        BaseReceiverServiceManager<ResultReceiverServiceViewModel>(ResultReceiverProcessService::class.java) {
+    class ResultReceiverServiceManager @Inject constructor(
+        app: Application,
+        viewModel: ResultReceiverServiceViewModel
+    ) : BaseReceiverServiceManager<ResultReceiverServiceViewModel>(app, viewModel, ResultReceiverProcessService::class.java) {
         override fun handleData(resultData: Bundle?) {
-            viewModel.observableField.set(resultData?.getInt(EXTRA_DATA).toString() ?: "")
+            viewModel.observableField.set(resultData?.getInt(BaseReceiverServiceManager.EXTRA_DATA).toString() ?: "")
         }
     }
 

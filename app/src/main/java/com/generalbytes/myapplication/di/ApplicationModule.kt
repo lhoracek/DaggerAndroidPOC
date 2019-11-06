@@ -8,10 +8,10 @@ import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Module(includes = [AndroidInjectionModule::class])
-class ApplicationModule {
+abstract class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideService(dependency: ApiDependency):SystemWideAPI = SystemWideAPI(dependency)
+    open fun provideService(dependency: ApiDependency):SystemWideAPI = SystemWideAPI(dependency)
 
 }
