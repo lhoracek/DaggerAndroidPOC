@@ -10,24 +10,37 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
+/**
+ * This service offers one way communication (more suitable for intent service
+ * performing some long running job and reporting progress)
+ */
 class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>() {
     @Singleton
-    class DifferentProcessServiceManager @Inject constructor(): BaseReceiverServiceManager<ResultReceiverServiceViewModel>(ResultReceiverProcessService::class.java)  {
-        override fun handleResult(resultCode: Int, resultData: Bundle?) {
-            viewModel.subject.onNext(resultData?.getInt(EXTRA_DATA).toString() ?: "")
+    class DifferentProcessServiceManager @Inject constructor() :
+        BaseReceiverServiceManager<ResultReceiverServiceViewModel>(ResultReceiverProcessService::class.java) {
+        override fun handleData(resultData: Bundle?) {
+            viewModel.observableField.set(resultData?.getInt(EXTRA_DATA).toString() ?: "")
         }
-
     }
+
+    lateinit var receiver: ResultReceiver
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // TODO if we kill the app, intent redelivery does not work correctly, receiver is null
-        val receiver = intent!!.getParcelableExtra<ResultReceiver>(BaseReceiverServiceManager.EXTRA_RECEIVER)
+        receiver =
+            intent!!.getParcelableExtra<ResultReceiver>(BaseReceiverServiceManager.EXTRA_RECEIVER)
         disposable.add(Observable.interval(1, TimeUnit.SECONDS)
             .subscribe {
                 val bundle = Bundle()
                 bundle.putInt(BaseReceiverServiceManager.EXTRA_DATA, it.toInt())
-                receiver.send(0, bundle)
+                receiver.send(BaseServiceManager.DATA, bundle)
             })
+        receiver.send(BaseServiceManager.START, null)
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    override fun onDestroy() {
+        receiver.send(BaseServiceManager.STOP, null)
+        super.onDestroy()
     }
 }

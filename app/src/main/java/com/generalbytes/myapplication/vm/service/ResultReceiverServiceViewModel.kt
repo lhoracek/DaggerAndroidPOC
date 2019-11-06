@@ -1,10 +1,10 @@
 package com.generalbytes.myapplication.vm.service
 
-import io.reactivex.subjects.PublishSubject
+import androidx.databinding.ObservableField
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class ResultReceiverServiceViewModel @Inject constructor() : BaseServiceViewModel() {
-    val subject = PublishSubject.create<String>()
+    val observableField = ObservableField<String>()
 }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.generalbytes.myapplication.activity.FirstActivity
 import com.generalbytes.myapplication.activity.SecondActivity
-import com.generalbytes.myapplication.model.Third
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -27,10 +26,6 @@ abstract class ActivityBindingModule {
 
 @Module(includes = [FragmentBindingModule::class])
 class ActivityScopeModule {
-
-    @Provides
-    @ActivityScope
-    fun provideThirdNum() = Third(ApplicationModule.numberFactory())
 
     @Provides
     @ActivityScope

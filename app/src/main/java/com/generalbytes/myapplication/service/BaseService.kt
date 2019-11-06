@@ -21,6 +21,7 @@ abstract class BaseService<T : BaseServiceViewModel> : DaggerService() {
         super.onDestroy()
         vm.running.set(false)
         disposable.dispose()
+        vm.onCleared()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

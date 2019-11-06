@@ -8,7 +8,7 @@ import timber.log.Timber
 abstract class BaseViewModel: ViewModel() {
     protected val disposable = CompositeDisposable()
 
-    override fun onCleared() {
+    public override fun onCleared() {
         super.onCleared()
         Timber.d("Called clear on ${this.toString()}")
         disposable.dispose()

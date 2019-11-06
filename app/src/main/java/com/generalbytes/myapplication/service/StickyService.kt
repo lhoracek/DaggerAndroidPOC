@@ -14,7 +14,7 @@ class StickyService : BaseService<StickyServiceViewModel>() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         disposable.add(Observable.interval(1, TimeUnit.SECONDS).subscribe {
-            vm.subject.onNext("Sticky service: $it")
+            vm.observableField.set("Sticky service: $it")
         })
         return super.onStartCommand(intent, flags, startId)
     }

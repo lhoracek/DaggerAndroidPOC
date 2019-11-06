@@ -25,6 +25,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel>(val layoutId: In
 
     @Module(includes = [FragmentScopeModule::class])
     abstract class InjectionModule {
+
     }
 
     override fun onCreateView(
