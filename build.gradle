@@ -8,9 +8,9 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0-beta01'
+        classpath 'com.android.tools.build:gradle:3.6.0-beta03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:3.6.0-beta03'
         classpath 'com.github.gfx.ribbonizer:ribbonizer-plugin:2.1.0'
     }
 }
