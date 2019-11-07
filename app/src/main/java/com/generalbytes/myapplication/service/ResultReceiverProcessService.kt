@@ -22,7 +22,7 @@ class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>
         viewModel: ResultReceiverServiceViewModel
     ) : BaseReceiverServiceManager<ResultReceiverServiceViewModel>(app, viewModel, ResultReceiverProcessService::class.java) {
         override fun handleData(resultData: Bundle?) {
-            viewModel.observableField.set(resultData?.getInt(BaseReceiverServiceManager.EXTRA_DATA).toString() ?: "")
+            viewModel.observableField.set(resultData?.getInt(BaseReceiverServiceManager.EXTRA_DATA).toString())
         }
     }
 

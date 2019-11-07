@@ -1,4 +1,4 @@
-package com.generalbytes.myapplication.di
+package com.generalbytes.myapplication.di.modules
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders

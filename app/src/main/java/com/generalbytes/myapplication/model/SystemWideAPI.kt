@@ -1,6 +1,12 @@
 package com.generalbytes.myapplication.model
 
 
-class SystemWideAPI constructor(val dependecy: ApiDependency) {
-    public fun getData() = "I'm API (${dependecy.getData()})"
+class SystemWideAPI constructor(val dependecy: ApiDependency) : ApiInterface {
+    override fun getData() = "I'm API (${dependecy.getData()})"
+
+
+}
+
+interface ApiInterface {
+    fun getData(): String
 }

@@ -9,19 +9,28 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-class StickyService : BaseService<StickyServiceViewModel>() {
-    @Inject lateinit var app: Application
+open class StickyService : BaseService<StickyServiceViewModel>() {
+    @Inject
+    lateinit var app: Application
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         disposable.add(Observable.interval(1, TimeUnit.SECONDS).subscribe {
-            vm.observableField.set("Sticky service: $it")
+            vm.observableField.set(getValue(it))
         })
         return super.onStartCommand(intent, flags, startId)
     }
 
+
+    protected open fun getValue(num: Long) = "Sticky service: $num"
+
+
     @Singleton
-    class StickyServiceManager @Inject constructor(
+    open class StickyServiceManager @Inject constructor(
         app: Application,
         viewModel: StickyServiceViewModel
-    ) : BaseServiceManager<StickyServiceViewModel>(app,viewModel, StickyService::class.java) {}
+    ) : BaseServiceManager<StickyServiceViewModel>(app, viewModel, StickyService::class.java), IStickyServiceManager
+}
+
+interface  IStickyServiceManager: IBaseServiceManager {
+
 }

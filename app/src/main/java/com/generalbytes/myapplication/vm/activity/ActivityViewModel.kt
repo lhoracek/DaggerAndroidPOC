@@ -1,9 +1,9 @@
 package com.generalbytes.myapplication.vm.activity
 
 import androidx.databinding.ObservableBoolean
+import com.generalbytes.myapplication.service.IStickyServiceManager
 import com.generalbytes.myapplication.service.MessengerProcessService
 import com.generalbytes.myapplication.service.ResultReceiverProcessService
-import com.generalbytes.myapplication.service.StickyService
 import com.generalbytes.myapplication.vm.BaseViewModel
 import com.generalbytes.myapplication.vm.service.MessengerProcessServiceViewModel
 import com.generalbytes.myapplication.vm.service.ResultReceiverServiceViewModel
@@ -14,7 +14,7 @@ class ActivityViewModel @Inject constructor(
     val stickyServiceViewModel: StickyServiceViewModel,
     val resultReceiverServiceViewModel: ResultReceiverServiceViewModel,
     val messengerProcessServiceViewModel: MessengerProcessServiceViewModel,
-    val stickyServiceManager: StickyService.StickyServiceManager,
+    val stickyServiceManager: IStickyServiceManager,
     val resultReceiverProcessServiceManager: ResultReceiverProcessService.ResultReceiverServiceManager,
     val messengerProcessServiceManager: MessengerProcessService.MessengerProcessServiceManager
 

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.gfx.ribbonizer'
 
 android {
     compileSdkVersion 29
@@ -62,6 +63,11 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.25.2'
     implementation 'com.google.dagger:dagger-android-support:2.25.2'
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    offlineImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    emulatorImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    emulatorOfflineImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+
     kapt 'com.google.dagger:dagger-compiler:2.25.2'
     kapt 'com.google.dagger:dagger-android-processor:2.25.2'
 
@@ -72,4 +78,5 @@ dependencies {
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:2.0-beta-3" // ./gradlew leakcanary-android-sample:connectedCheck
 }

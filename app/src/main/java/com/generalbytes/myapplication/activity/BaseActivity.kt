@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.generalbytes.myapplication.BR
-import com.generalbytes.myapplication.di.ActivityScopeModule
+import com.generalbytes.myapplication.di.modules.ActivityScopeModule
 import com.generalbytes.myapplication.vm.createFactory
 import dagger.Module
 import dagger.android.support.DaggerAppCompatActivity

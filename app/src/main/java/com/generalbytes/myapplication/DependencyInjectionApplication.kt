@@ -1,7 +1,7 @@
 package com.generalbytes.myapplication
 
 import android.app.Application
-import com.generalbytes.myapplication.di.DaggerAppComponent
+import com.generalbytes.myapplication.di.ComponentFactory
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import timber.log.Timber
@@ -17,11 +17,7 @@ class DependencyInjectionApplication : Application(), HasAndroidInjector {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-        DaggerAppComponent
-            .builder()
-            .application(this)
-            .build()
-            .inject(this)
+        ComponentFactory().buildComponent(this).inject(this)
     }
 
     override fun androidInjector() = dispatchingAndroidInjector

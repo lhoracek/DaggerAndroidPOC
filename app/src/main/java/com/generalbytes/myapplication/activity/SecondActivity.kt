@@ -3,7 +3,7 @@ package com.generalbytes.myapplication.activity
 import androidx.appcompat.app.AppCompatActivity
 import com.generalbytes.myapplication.R
 import com.generalbytes.myapplication.databinding.ActivityBinding
-import com.generalbytes.myapplication.di.ActivityScope
+import com.generalbytes.myapplication.di.modules.ActivityScope
 import com.generalbytes.myapplication.vm.activity.ActivityViewModel
 import dagger.Binds
 import dagger.Module

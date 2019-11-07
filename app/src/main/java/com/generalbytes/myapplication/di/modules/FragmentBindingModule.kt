@@ -1,4 +1,4 @@
-package com.generalbytes.myapplication.di
+package com.generalbytes.myapplication.di.modules
 
 import com.generalbytes.myapplication.fragment.FirstFragment
 import com.generalbytes.myapplication.fragment.SecondFragment

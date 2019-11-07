@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.generalbytes.myapplication.BR
-import com.generalbytes.myapplication.di.FragmentScopeModule
+import com.generalbytes.myapplication.di.modules.FragmentScopeModule
 import com.generalbytes.myapplication.vm.createFactory
 import dagger.Module
 import dagger.android.support.DaggerFragment

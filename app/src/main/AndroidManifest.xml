@@ -19,6 +19,7 @@
         </activity>
 
         <service android:name=".service.StickyService" />
+        <service android:name=".mocks.service.EmulatorStickyService" />
         <service
             android:name=".service.ResultReceiverProcessService"
             android:process=":MyCustomProcess" />
