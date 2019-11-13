@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.gfx.ribbonizer'
+//apply plugin: 'com.facebook.testing.screenshot'
+apply plugin: 'shot'
 
 android {
     compileSdkVersion 29
@@ -13,7 +15,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.generalbytes.myapplication.ScreenshotTestRunner"
+        // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     testOptions {
         unitTests.returnDefaultValues = true
@@ -42,6 +45,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+shot {
+    appId = android.defaultConfig.applicationId
 }
 
 dependencies {
