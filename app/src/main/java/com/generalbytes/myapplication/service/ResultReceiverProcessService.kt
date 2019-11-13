@@ -22,7 +22,7 @@ class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>
         viewModel: ResultReceiverServiceViewModel
     ) : BaseReceiverServiceManager<ResultReceiverServiceViewModel>(app, viewModel, ResultReceiverProcessService::class.java) {
         override fun handleData(resultData: Bundle?) {
-            viewModel.observableField.set(resultData?.getInt(BaseReceiverServiceManager.EXTRA_DATA).toString())
+            viewModel.observableField.set(resultData?.getInt(EXTRA_DATA).toString())
         }
     }
 
@@ -30,8 +30,7 @@ class ResultReceiverProcessService : BaseService<ResultReceiverServiceViewModel>
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // TODO if we kill the app, intent redelivery does not work correctly, receiver is null
-        receiver =
-            intent!!.getParcelableExtra<ResultReceiver>(BaseReceiverServiceManager.EXTRA_RECEIVER)
+        receiver = intent!!.getParcelableExtra(BaseReceiverServiceManager.EXTRA_RECEIVER)!!
         disposable.add(Observable.interval(1, TimeUnit.SECONDS)
             .subscribe {
                 val bundle = Bundle()
