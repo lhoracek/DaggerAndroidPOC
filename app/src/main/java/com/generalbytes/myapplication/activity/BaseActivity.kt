@@ -27,10 +27,7 @@ abstract class BaseActivity<T: ViewDataBinding, V: ViewModel>(val layoutId: Int)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
-
-        // This eventually creates new instance of view model after activity recreation
         ViewModelProviders.of(this, viewModel.createFactory()).get(viewModel.javaClass)
-
         bindModel()
     }
 

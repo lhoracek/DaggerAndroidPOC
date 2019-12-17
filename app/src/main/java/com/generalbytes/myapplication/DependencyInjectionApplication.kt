@@ -2,6 +2,7 @@ package com.generalbytes.myapplication
 
 import android.app.Application
 import com.generalbytes.myapplication.di.ComponentFactory
+import com.ivoberger.timbersentry.SentryTree
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import timber.log.Timber
@@ -14,9 +15,10 @@ class DependencyInjectionApplication : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+        else Timber.plant(SentryTree("https://a2cd8b46f5df4650a7481e717349eb42@sentry.io/1853733"))
+
+
         ComponentFactory().buildComponent(this).inject(this)
     }
 

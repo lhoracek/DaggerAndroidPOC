@@ -11,4 +11,5 @@ class FirstFragmentViewModel @Inject constructor(
     val API: ApiInterface
 ) : BaseViewModel() {
     val apiValue = API.getData()
+    val clickHandler:()-> Unit = {}
 }

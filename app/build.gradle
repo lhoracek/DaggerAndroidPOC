@@ -3,16 +3,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.gfx.ribbonizer'
-//apply plugin: 'com.facebook.testing.screenshot'
 apply plugin: 'shot'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 28
+    //buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.generalbytes.myapplication"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "com.generalbytes.myapplication.ScreenshotTestRunner"
@@ -25,18 +25,26 @@ android {
         enabled = true
     }
     buildTypes {
+        debug{
+            versionNameSuffix "-Debug"
+            applicationIdSuffix ".debug"
+        }
+
         emulatorOffline{
             initWith buildTypes.debug
+            versionNameSuffix "-EmulatorOffline"
             applicationIdSuffix ".emulator.offliner"
         }
 
         emulator{
             initWith buildTypes.debug
+            versionNameSuffix "-Emulator"
             applicationIdSuffix ".emulator"
         }
 
         offline{
             initWith buildTypes.debug
+            versionNameSuffix "-Offline"
             applicationIdSuffix ".offline"
         }
 
@@ -86,5 +94,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
-    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:2.0-beta-3" // ./gradlew leakcanary-android-sample:connectedCheck
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:2.0-beta-3"
+    // ./gradlew leakcanary-android-sample:connectedCheck
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'com.ivoberger:timberSentry:0.3.0'
+    implementation 'io.sentry:sentry-android:1.7.27'
+    implementation 'org.slf4j:slf4j-nop:1.7.25'
 }

@@ -1,7 +1,6 @@
 package com.generalbytes.myapplication.di.modules
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.generalbytes.myapplication.activity.FirstActivity
 import com.generalbytes.myapplication.activity.SecondActivity
 import dagger.Module
@@ -30,8 +29,4 @@ class ActivityScopeModule {
     @Provides
     @ActivityScope
     fun provideFragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
-
-    @Provides
-    @ActivityScope
-    fun provideViewModelProvider(activity: AppCompatActivity) = ViewModelProviders.of(activity)
 }

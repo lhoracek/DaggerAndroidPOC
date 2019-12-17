@@ -25,7 +25,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel>(val layoutId: In
 
     @Module(includes = [FragmentScopeModule::class])
     abstract class InjectionModule {
-
     }
 
     override fun onCreateView(
@@ -34,8 +33,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModel>(val layoutId: In
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater, layoutId, null, false)
-        val viewModelFactory = viewModel.createFactory()
-        ViewModelProviders.of(this, viewModelFactory).get(viewModel.javaClass)
+        ViewModelProviders.of(this, viewModel.createFactory()).get(viewModel.javaClass)
         bindModel()
         return binding.root
     }

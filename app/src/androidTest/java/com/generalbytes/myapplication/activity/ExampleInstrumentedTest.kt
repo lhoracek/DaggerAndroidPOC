@@ -15,6 +15,7 @@ import org.hamcrest.CoreMatchers.endsWith
 import org.hamcrest.CoreMatchers.startsWith
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
@@ -24,6 +25,7 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @LargeTest
+@Ignore
 class FirstActivityTest {
 
     @get:Rule
