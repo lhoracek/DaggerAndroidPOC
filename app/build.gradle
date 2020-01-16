@@ -10,12 +10,12 @@ android {
     compileSdkVersion 28
     //buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.generalbytes.myapplication"
+        applicationId "cz.lhoracek.myapplication"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.generalbytes.myapplication.ScreenshotTestRunner"
+        testInstrumentationRunner "cz.lhoracek.myapplication.ScreenshotTestRunner"
         // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     testOptions {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.generalbytes.myapplication.vm.fragment.SecondFragmentViewModel" />
+            type="cz.lhoracek.myapplication.example.fragment.FirstFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
